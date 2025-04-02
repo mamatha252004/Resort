@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Resort.Models.Booking>
+
+<div class="w-100 card border-0 p-4">
+    <div class="card-header bg-success bg-gradient m-lg-0 py-3">
+        <div class="col-12 text-center">
+            <h2 class="text-white py-2">Booking List</h2>
+        </div>
+    </div>
+</div>
+<div class="card-body border p-4">
+    <table id="bookingsTable" class="table table-bordered table-striped villa-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Check In Date</th>
+                <th>Nights</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booking in Model)
+            {
+                <tr>
+                    <td>@booking.Id</td>
+                    <td>@booking.Name</td>
+                    <td>@booking.Phone</td>
+                    <td>@booking.Email</td>
+                    <td class="booking-status">@booking.Status</td>
+                    <td>@booking.CheckInDate.ToString("yyyy-MM-dd")</td>
+                    <td>@booking.Nights</td>
+                    <td>@booking.TotalCost</td>
+                    <td>
+                        <a href="@Url.Action("Details", "Booking", new { id = booking.Id })" class="btn btn-info">Details</a>
+                        <form method="post" action="@Url.Action("Approve", "Booking")" style="display:inline;">
+                            <input type="hidden" name="id" value="@booking.Id" />
+                            <button type="submit" class="btn btn-success">Approve</button>
+                        </form>
+                        <form method="post" action="@Url.Action("Decline", "Booking")" style="display:inline;">
+                            <input type="hidden" name="id" value="@booking.Id" />
+                            <button type="submit" class="btn btn-danger">Decline</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .villa-table img {
+        width: 100px;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .villa-table th, .villa-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .villa-table th {
+        background-color: #f8f9fa;
+    }
+</style>

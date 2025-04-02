@@ -1,0 +1,37 @@
+﻿@model Resort.Models.Booking
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-0 p-3">
+                <div class="card-header bg-success bg-gradient m-lg-0 py-3">
+                    <div class="col-10 text-center">
+                        <h2 class="text-white py-2">Payment Details</h2>
+                    </div>
+                </div>
+                <div class="card-body border p-3">
+                    <form asp-action="Payment" method="post">
+                        <input type="hidden" name="Id" value="@Model.Id" />
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" class="form-control" id="cardNumber" name="CardNumber" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="expiryDate">Expiry Date</label>
+                            <input type="text" class="form-control" id="expiryDate" name="ExpiryDate" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" class="form-control" id="cvv" name="CVV" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="cardHolderName">Card Holder Name</label>
+                            <input type="text" class="form-control" id="cardHolderName" name="CardHolderName" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Payment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
